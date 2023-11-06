@@ -8,12 +8,63 @@
 
         \begin{definition}[样本轨道]
             
-            随机过程$X(t, \omega)$是关于$t \in \mathbb{T}$和$\omega \in \Omega$的二元函数，当$\omega$固定，$X(\cdot, \omega)$是$t \in \mathbb{T}$的函数，称为样本轨道$(Sample\ Path)$。
+            随机过程 \StochasticProcess 是关于$t \in \mathbb{T}$和$\omega \in \Omega$的二元函数，当$\omega$固定，$X(\cdot, \omega)$是$t \in \mathbb{T}$的函数，称为样本轨道$(Sample\ Path)$。
 
         \end{definition}
 
         \begin{definition}[有穷维分布族]
+
+            给定实值随机过程 \StochasticProcess ，对于$\forall n \geq 1, \forall {\{t_i\}}_{i=1}^{n} \subset \mathbb{T} $，可得$(\textbf{X}_{t_1}, \cdots, \textbf{X}_{t_n})$的联合分布函数为：
+            $$
+            F_{t_1, \cdots, t_n}(x_{t_1}, \cdots, x_{t_n}) = P\{\textbf{X}_{t_1} \leq x_{t_1}, \cdots, \textbf{X}_{t_n} \leq x_{t_n}\}
+            $$
+
+            \noindent
+            有穷维分布函数族$\mathscr{D} \triangleq \{F_{t_1, \cdots, t_n}(x_{t_1}, \cdots, x_{t_n})| \forall n \geq 1, \forall \{t_i\}_{i=1}^{n} \subset \mathbb{T}\}$
             
+            \noindent
+            定义$(\textbf{X}_{t_1}, \cdots, \textbf{X}_{t_n})$的联合矩母函数为：
+            $$
+            \varphi_{t_1, \cdots, t_n}(u_{t_1}, \cdots, u_{t_n}) = E\left[e^{\sum_{j=1}^{n} u_{t_j} \textbf{X}_{t_j}}\right]
+            $$
+            有穷维矩母函数族$\mathscr{C} \triangleq \{\varphi_{t_1, \cdots, t_n}(u_{t_1}, \cdots, u_{t_n}) | \forall n \geq 1, \forall \{t_i\}_{i=1}^{n} \subset \mathbb{T}\}$
+
+        \end{definition}
+
+        \begin{definition}[独立随机过程]
+            随机过程 \StochasticProcess 满足：
+            $$
+            F_{t_1, \cdots, t_n}(x_{t_1}, \cdots, x_{t_n}) = \prod_{k=1}^{n} F_{t_k}(x_{t_k})\ \ \ \ (\forall n \geq 1, \forall \{t_i\}_{i=1}^{n})
+            $$
+            则称$\{\textbf{X}_t, t \in \mathbb{T}\}$为独立随机过程。
+        \end{definition}
+
+        \begin{definition}[均值函数]
+            给定随机过程 \StochasticProcess，定义均值函数为：
+            $$
+            m(t) = E(\textbf{X}_t)
+            $$
+        \end{definition}
+
+        \begin{definition}[方差函数]
+            给定随机过程 \StochasticProcess， 定义方差函数为：
+            $$
+            D(t) = Var(\textbf{X}_t) = E{\left(\textbf{X}_t - m(t)\right)}^2
+            $$
+        \end{definition}
+
+        \begin{definition}[自相关函数]
+            给定随机过程 \StochasticProcess，定义自相关函数为：
+            $$
+            R(s, t) = E(\textbf{X}_s\textbf{X}_t)
+            $$
+        \end{definition}
+
+        \begin{definition}[协方差函数]
+            给定随机过程 \StochasticProcess， 定义协方差函数为：
+            $$
+            k(s, t) = cov(\textbf{X}_s \textbf{X}_t) = E((\textbf{X}_s - m(s))(\textbf{X}_t - m(t))) = R(s, t) - m(s)m(t)
+            $$
         \end{definition}
     \subsection{随机过程的分类}
         \begin{definition}

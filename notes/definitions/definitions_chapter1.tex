@@ -67,6 +67,47 @@
             $$
         \end{definition}
     \subsection{随机过程的分类}
-        \begin{definition}
+        \begin{definition}[独立增量过程]
+            若 \StochasticProcess 满足：对于 $\forall 0 \leq t_1 < t_2 < \cdots < t_{n - 1} < t_{n}$ ，有 $\textbf{X}_{t_2} - \textbf{X}_{t_1}, \textbf{X}_{t_3} - \textbf{X}_{t_2}, \cdots, \textbf{X}_{t_n} - \textbf{X}_{t_{n - 1}}$ 相互独立，则称 \StochasticProcess 为独立增量过程。
+        \end{definition}
+
+        \begin{definition}[平稳增量过程]
+            若 \StochasticProcess 满足：对于 $ \forall t, h \geq 0\ (t, t + h \in \mathbb{T}) $ ，有 $ \textbf{X}_{t + h} - \textbf{X}_{t}$ 的分布与 $t$ 无关，则称 \StochasticProcess 为平稳增量过程。
+        \end{definition}
+
+        \begin{definition}[平稳独立增量过程]
+            若 \StochasticProcess 既是独立增量过程，又是平稳增量过程，则称 \StochasticProcess 是平稳独立增量过程。
+        \end{definition}
+
+        \begin{definition}[计数过程]
+            \CountingProcess 称为一个计数过程，若：
+            \begin{enumerate}[label=(\arabic*)]
+                \item $\textbf{N}_0 = 0$
+                \item $\textbf{N}_t \in \mathbb{N}, \forall t \geq 0$
+                \item $\textbf{N}_s \leq \textbf{N}_t, \forall s < t$
+                \item 当 $s < t$ ， $\textbf{N}_t - \textbf{N}_s$ 等于 $(s, t]$ 中发生的事件的个数。
+            \end{enumerate}
+        \end{definition}
+
+        \begin{definition}[正态过程]
+           如果 \StochasticProcess 对于 $ \forall n \geq 1, \forall \{ t_i \}_{i = 1}^{n} \subset \mathbb{T}$ 有 $\left( \textbf{X}_{t_1}, \cdots, \textbf{X}_{t_n}\right) \sim N(\mu, \Sigma)$，则称 \StochasticProcess 为正态过程。
+        \end{definition}
+
+        \begin{definition}[弱平稳过程/宽平稳过程/协方差平稳过程]
+            如果 \StochasticProcess 满足：
+            \begin{enumerate}[label=(\arabic*)]
+                \item $m(t) \equiv C\ (C \in \mathbb{R})$
+                \item $k(s, s+t) = B(t)$
+                \item $ E\left( \textbf{X}_t^2 \right) < +\infty $
+            \end{enumerate}
+            则称 \StochasticProcess 为弱平稳过程/宽平稳过程/协方差平稳过程。
+        \end{definition}
+
+        \begin{definition}[强平稳过程/严平稳过程/狭义平稳过程]
+            如果 \StochasticProcess 对 $\forall n \in \mathbb{N}^*, \forall t_1 < t_2 < \cdots < t_n, \forall h$，有：
+            $$
+            P\left( \textbf{X}_{t_1} \leq \lambda_1, \cdots, \textbf{X}_{t_n} \leq \lambda_n \right) = P\left( \textbf{X}_{t_1 + h} \leq \lambda_1, \cdots, \textbf{X}_{t_n + h} \leq \lambda_n \right)
+            $$
+            即$(\textbf{X}_{t_1}, \cdots, \textbf{X}_{t_n})$与$(\textbf{X}_{t_1 + h}, \cdots, \textbf{X}_{t_n + h})$同分布，则称 \StochasticProcess 为强平稳过程/严平稳过程/狭义平稳过程。
             
         \end{definition}

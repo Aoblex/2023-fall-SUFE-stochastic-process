@@ -1,6 +1,36 @@
 \section{泊松过程}
     \subsection{泊松过程的定义}
+        \begin{definition}[泊松过程]
+            计数过程 \CountingProcess 称为参数为$\lambda(\lambda > 0)$ 的泊松过程，若满足：
+            \begin{enumerate}[label=(\arabic*).]
+                \item \CountingProcess 是独立增量过程
+                \item $\forall s, t \geq 0$，有 $$ P\left\{ \textbf{N}(s + t) - \textbf{N}(s) = n \right\} = e^{-\lambda t} \frac{(\lambda t)^n}{n !} , n = 0, 1, 2, \cdots $$
+            \end{enumerate}
+        \end{definition}
+
+        \begin{definition}[泊松过程]
+            计数过程 \CountingProcess 称为参数为 $\lambda (\lambda > 0)$ 的泊松过程，若满足：
+            \begin{enumerate}[label=(\arabic*).]
+                \item \CountingProcess 是独立增量过程
+                \item \CountingProcess 是平稳增量过程
+                \item 对于$\forall t>0$和足够小的$h > 0$，有：
+                \begin{align*}
+                    P\left\{ \textbf{N}(t + h) - \textbf{N}(t) = 1 \right\} &= \lambda h + o(h) \\
+                    P\left\{ \textbf{N}(t + h) - \textbf{N}(t) \geq 2 \right\} &= o(h)
+                \end{align*}
+
+            \end{enumerate}
+        \end{definition}
     \subsection{泊松过程的性质}
     \subsection{非齐次的泊松过程}
+        \begin{definition}[齐次泊松过程]
+            计数过程 \CountingProcess 若满足：
+            \begin{enumerate}[label=(\arabic*).]
+                \item \CountingProcess 是独立增量过程
+                \item $P\left\{ \textbf{N}(t + h) - \textbf{N}(t) = 1 \right\} = \lambda(t) h + o(h)$
+                \item $P\left\{ \textbf{N}(t + h) - \textbf{N}(t) \geq 2 \right\} = o(h)$
+            \end{enumerate}
+            则称 \CountingProcess 是强度函数为$\lambda(t)\ (\lambda(t) > 0, t \geq 0)$ 的非齐次泊松过程。
+        \end{definition}
     \subsection{复合泊松过程}
     

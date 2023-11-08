@@ -1,4 +1,163 @@
 \section{离散时间的马尔可夫链}
     \subsection{马尔可夫链的基本概念}
+        \begin{definition}[马尔可夫链]
+            若 \MarkovChain 的状态空间和参数空间都是离散的，且具有马氏性：
+            \begin{align*}
+                &P\{ \textbf{X}_{n+1} = j | \textbf{X}_0 = i_0, \textbf{X}_1 = i_1, \cdots, \textbf{X}_{n - 1} = i_{n - 1}, \textbf{X}_n = i \} \\= &P\{ \textbf{X}_{n + 1} = j | \textbf{X}_n = i \}
+            \end{align*}
+            则称 \MarkovChain 为马氏链。
+        \end{definition}
+
+        \begin{definition}[一步转移概率]
+            \MarkovChain 为马氏链，若 $P\{\textbf{X}_{n+1} = j | \textbf{X}_{n} = i\}$ 与 $n$ 无关，则：
+            $$
+            p_{ij} \triangleq P\{\textbf{X}_{n+1} = j | \textbf{X}_{n} = i\}
+            $$
+            称 \MarkovChain 为（时间）齐次的，称 $ p_{ij}$ 为 \MarkovChain 的一步转移概率，称 $P = \left[p_{ij}\right]$ 为 \MarkovChain 的一步转移概率矩阵。
+        \end{definition}
+
+        \begin{definition}[多步转移概率]
+            称条件概率
+            $$
+            p_{ij}^{(m)} \triangleq P\{\textbf{X}_{n+m} = j | \textbf{X}_{n} = i\}
+            $$ 
+            为 \MarkovChain 的 $m$ 步转移概率，记 $P^{(m)} = \left[p_{ij}^{(m)}\right]$ 为 \MarkovChain 的 $m$ 步转移概率矩阵。
+        \end{definition}
+
+        \begin{definition}[概率分布行向量]
+            对于 \MarkovChain，记 $n$ 时刻的分布行向量为：
+            $$
+            s(n) = \{s_i(n), i \in \mathbb{E} \}
+            $$
+            其中：
+            $$
+            s_i(n) = P(\textbf{X}_n = i)
+            $$
+        \end{definition}
     \subsection{马氏链的状态分类}
+        \begin{definition}[可达]
+            \MarkovChain 是一马氏链，给定任意的 $i, j \in \mathbb{E}$，若：
+            $$
+            \{n | p_{ij}^{(n)} > 0\} \neq \emptyset
+            $$
+            则称 $i$ 可达 $j$，记作 $ i \rightarrow j $。
+        \end{definition}
+
+        \begin{definition}[互通]
+            \MarkovChain 是一马氏链，给定任意的 $i, j \in \mathbb{E}$，若：
+            
+            \begin{center}
+                $i \rightarrow j$ 且 $j \rightarrow i$
+            \end{center}
+
+            \noindent
+            则称 $i, j$ 互通， 记作 $ i \leftrightarrow j$
+        \end{definition}
+        
+        \begin{definition}[状态分类]
+            $\forall i, j \in \mathbb{E}$，若 $i \leftrightarrow j$，则称 $i, j$ 属于同一类状态。
+        \end{definition}
+
+        \begin{definition}[可约与不可约]
+            若 \MarkovChain 只存在一个类，则称其是不可约的，否则称为可约的。
+        \end{definition}
+
+        \begin{definition}[可回态与不可回态]
+            \MarkovChain 是一马氏链，给定任意的 $i \in \mathbb{E}$，若：
+            $$
+            P\{\textbf{X}_n = i | \textbf{X}_0 = i\} \equiv 0\ (\forall n \in \mathbb{N}^*)
+            $$
+            则称 $i$ 是不可回态，否则称为可回态。
+        \end{definition}
+
+        \begin{definition}[周期与非周期]
+            \MarkovChain 是一马氏链， 给定任意的 $i \in \mathbb{E}$，记：
+            $$
+            d_i \triangleq \gcd \left(\{n | n \in \mathbb{N}^*, p_{ii}^{(n)} > 0\}\right)
+            $$
+            当 $d_i > 1$，称状态 $i$ 为周期的；当 $d_i = 1$， 称状态 $i$ 为非周期的。
+        \end{definition}
+
+        \begin{definition}[首达时间]
+            \MarkovChain 是一马氏链，给定任意的 $i, j \in \mathbb{E}$，首达时间定义为：
+            $$
+            \textbf{T}_{ij} = \inf\{ n \geq 1 | \textbf{X}_n = j, \textbf{X}_0 = i \}
+            $$
+            若 $\{ n \geq 1 | \textbf{X}_n = j, \textbf{X}_0 = i \} = \emptyset$ ，则令 $ \textbf{T}_{ij} = \infty$。首达时间是一个随机变量。
+        \end{definition}
+
+        \begin{definition}[首达概率]
+            \MarkovChain 是一马氏链，给定任意的$i, j \in \mathbb{E}$，首达概率定义为：
+            \begin{align*}
+                f_{ij}^{(n)} &= P\left\{ \textbf{T}_{ij} = n | \textbf{X}_0 = i \right\} \\
+                &= P\left\{ \textbf{X}_n = j, \textbf{X}_k \neq j, 1 \leq k \leq n - 1 | \textbf{X}_0 = i \right\} 
+            \end{align*}
+            定义：
+            \begin{align*}
+                f_{ij}^{(0)} &= 0\ (i \neq j, i, j \in \mathbb{E}) \\
+                f_{ii}^{(0)} &= 1\ ( i \in \mathbb{E})
+            \end{align*} 
+        \end{definition}
+
+        \begin{definition}[可达概率]
+            \MarkovChain 是一马氏链，给定任意的$i, j \in \mathbb{E}$，可达概率定义为：
+            \begin{align*}
+                f_{ij} &= P\{T_{ij} < +\infty | \textbf{X}_0 = i\} \\
+                &= P\{\exists n, s.t.\ \textbf{X}_n = j, \textbf{X}_k \neq j, 1 \leq k \leq n - 1 | \textbf{X}_0 = i\} \\
+                &= \sum\limits_{n = 1}^{\infty} f_{ij}^{(n)}
+            \end{align*}
+        \end{definition}
+
+        \begin{definition}[平均可达时间]
+            \MarkovChain 是一马氏链，给定任意的$i, j \in \mathbb{E}$，平均可达时间定义为：
+            \[
+                \mu_{ij} =
+                \left\{
+                    \begin{array}{l}
+                        E\left[ T_{ij} \right] = \sum\limits_{n=1}^{\infty} n f_{ij}^{(n)}\ \ \ (f_{ij} = 1) \\
+                        \infty\ \ \ (f_{ij} < 1)
+                    \end{array}
+                \right. 
+            \] 
+        \end{definition}
+
+        \begin{definition}[常返]
+            \MarkovChain 是一马氏链，给定任意的$i \in \mathbb{E}$，若 $f_{ii} = 1$，则称状态 $i$ 是常返的。
+        \end{definition}        
+
+        \begin{definition}[正常返]
+            \MarkovChain 是一马氏链，给定任意的$i \in \mathbb{E}$，若$f_{ii} = 1$，且 $ \mu_{ii} < \infty$，则称状态 $i$ 是正常返的。
+        \end{definition}
+
+        \begin{definition}[遍历]
+            \MarkovChain 是一马氏链，给定任意的$i \in \mathbb{E}$，若 $f_{ii} = 1$，且 $ \mu_{ii} < \infty$， 且 $d_i = 1$， 则称状态 $i$ 是遍历的。
+        \end{definition}
+
+        \begin{definition}[零常返]
+            \MarkovChain 是一马氏链，给定任意的$i \in \mathbb{E}$，若 $f_{ii} = 1$，且 $ \mu_{ii} = \infty$，则称状态 $i$ 是零常反的。
+        \end{definition}
+
+        \begin{definition}[非常返]
+            \MarkovChain 是一马氏链，给定任意的$i \in \mathbb{E}$，若 $f_{ii} < 1$，则称状态 $i$ 是非常返的。
+        \end{definition}
+
     \subsection{转移概率的极限状态与平稳分布}
+        
+        \begin{definition}[极限分布]
+            \MarkovChain 是一马氏链，记：
+            \[\pi_j^* \triangleq \lim\limits_{n \to \infty} s_j(n) = \lim\limits_{n \to \infty} P(\textbf{X}_n = j)\]
+            若 $\forall j \in \mathbb{E}, \pi_j^*$ 存在，且 $\sum\limits_{j \in \mathbb{E}} \pi_j^* = 1$，则称 $\pi = (\pi_1^*, \pi_2^*, \ldots)$ 为 \MarkovChain 的极限分布。
+        \end{definition}
+
+        \begin{definition}[平稳分布]
+            \MarkovChain 是一马氏链，若：
+            \[
+                \left\{
+                    \begin{array}{l}
+                        \bm{\pi} \cdot \bm{1} = 1 \\
+                        \bm{\pi} \cdot P = \bm{\pi}
+                    \end{array}
+                \right.
+            \]
+            则称 $ \bm{\pi} \triangleq \{\pi_j, j \in \mathbb{E}\}$ 为 \MarkovChain 的平稳分布。其中 $\bm{1}$为全$1$列向量， $P$ 为概率转移矩阵。
+        \end{definition}

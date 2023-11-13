@@ -1,4 +1,54 @@
 \section{随机过程的基本概念}
     \subsection{随机过程的定义与有穷维分布族} 
-    
+    （空）
     \subsection{随机过程的分类}
+
+    \begin{theorem}[正态过程充要条件]
+        随机过程 \StochasticProcess 是正态过程当且仅当 $\forall n \geq 1, \forall t_1, \ldots, t_n \in \mathbb{T}, \forall a_1, \ldots, a_n, \sum\limits_{k=1}^{n} a_k \textbf{X}_{t_k} $ 服从一维正态分布。
+    \end{theorem}
+
+    \begin{proof}
+        $N$ 维随机向量$\textbf{X} = (\textbf{X}_1, \ldots, \textbf{X}_N)^T$ 服从多变量正态分布的充要条件是：任何线性组合$\textbf{Y} = a_1 \textbf{X}_1 + \ldots + a_N \textbf{X}_N$ 服从正态分布。
+    \end{proof}
+
+    \begin{theorem}
+        二阶矩存在的严平稳过程必为宽平稳的。
+    \end{theorem}
+
+    \begin{proof}
+        宽平稳需要满足的条件如下：
+        \begin{align}
+            m(t) &\equiv C \label{wide-sense:m} \\
+            k(s, s + t) &= B(t) \label{wide-sense:k}\\
+            E({\textbf{X}_t}^2) &< +\infty , \forall t \in \mathbb{T} \label{wide-sense:E}
+        \end{align}
+        由条件知，\eqref{wide-sense:E}成立。
+
+        二阶矩存在，则一阶矩存在，且由$Cauchy-Schwarz$ 不等式的积分形式可知 $k(s, s+t)$ 存在。
+
+        而由严平稳过程的定义知：$\forall t \in \mathbb{T},\textbf{X}_t$同分布，于是\eqref{wide-sense:m}成立。
+
+        对于\eqref{wide-sense:k}，考虑：
+        \begin{align*}
+            k(s, s + t) &= E(\textbf{X}_s, \textbf{X}_{s + t}) - E(\textbf{X}_s)E(\textbf{X}_{s+t}) \\
+            &= \left[\quad \iint\limits_{\textbf{X}_s \in \mathbb{E}, \textbf{X}_{s+t} \in \mathbb{E}} x_s x_{s+t} f(x_s, x_{s+t}) \mathrm{d}x_s\mathrm{d}x_{s+t}\right] - C^2
+        \end{align*}
+        
+        由严平稳过程的定义知，$\forall s \in \mathbb{T}, f(x_s, x_{s+t}) = f(x_0, x_t)$，故\eqref{wide-sense:k}成立。
+    \end{proof}
+
+    \begin{theorem}
+        正态宽平稳过程必为严平稳过程。
+    \end{theorem}
+
+    \begin{proof}
+        $\forall n \geq 1, \forall t_1 , \ldots, t_n \in \mathbb{T}$,
+        
+        令$\textbf{X}_0 = (\textbf{X}_{t_1}, \ldots, \textbf{X}_{t_n}), \textbf{X}_h = (\textbf{X}_{t_1 + h}, \ldots, \textbf{X}_{t_n + h})$
+
+        由于 \StochasticProcess 为正态宽平稳过程，故 $\textbf{X}_0$，$\textbf{X}_h$ 服从多元正态分布。
+
+        由宽平稳过程的定义知，对于 $\textbf{X}_0$ 和 $\textbf{X}_h$，其均值向量相同，均为常数向量。其协方差矩阵只与时间差有关，因此也相同。
+        
+        由于正态过程的有穷维分布由 $m(t)$ 和 $k(s, t)$ 完全决定。而$\textbf{X}_0$和$\textbf{X}_h$均值和协方差相同,故 $\textbf{X}_0$ 和 $\textbf{X}_h$ 同分布对任意的 $h$ 成立，从而有\StochasticProcess 为严平稳过程。
+    \end{proof}

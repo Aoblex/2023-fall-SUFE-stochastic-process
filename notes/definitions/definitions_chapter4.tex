@@ -1,5 +1,85 @@
 \section{连续时间的马尔可夫链}
     \subsection{连续时间马氏链的基本定义}
+        \begin{definition}[连续时间的马尔可夫链]
+            设随机过程 \ContinuousMarkovChain 的状态空间 $ \mathbb{E} = \{0, 1, 2, \ldots \} $ 是离散的且参数集合 $\mathbb{T}$ 是连续的。若：
+            \begin{align*}
+                    &P\{ \textbf{X}(t_{n+1}) = i_{n + 1} | \textbf{X}(t_0) = i_0, \ldots, \textbf{X}(t_{n-1}) = i_{n - 1}, \textbf{X}(t_n) = i_n \} \\
+                    = &P\{ \textbf{X}(t_{n+1}) = i_{n+1} | \textbf{X}(t_n) = i_n \}
+            \end{align*}
+        对 $\forall 0 \leq t_1 < t_2 < \cdots < t_n < t_{n+1}, \forall i_k \in \mathbb{E}\ (0 \leq k \leq n + 1)$ 成立，则称 \ContinuousMarkovChain 为连续时间的马尔可夫链。
+        \end{definition}
+
+        \begin{definition}[转移概率]
+            \ContinuousMarkovChain 为连续时间的马尔可夫链，$\forall s, t \geq 0, i, j \in \mathbb{E}$，称：
+            \[ P\{\textbf{X}(t + s) = j | \textbf{X}(s) = i\} = P_{ij}(t;s) \]
+            为 \ContinuousMarkovChain 的转移概率。
+        \end{definition}
+            
+        \begin{definition}[齐次连续时间马氏链]
+            \ContinuousMarkovChain 为连续时间的马尔可夫链， 若$\forall s, t \geq 0, i, j \in \mathbb{E}$，有：
+            \[ P\{\textbf{X}(t + s) = j | \textbf{X}(s) = i \} = P \{ \textbf{X}(t) = j | \textbf{X}(0) = i\} \triangleq P_{ij}(t) \]
+            则称 \ContinuousMarkovChain 为齐次的连续时间马尔可夫链。 
+        \end{definition}
+
+        \begin{definition}[转移概率矩阵]
+            $\forall t \geq 0$，称 $P(t) = \left( P_{ij}(t) \right), i, j \in \mathbb{E}$ 为转移概率矩阵。
+        \end{definition}
+
+        \begin{definition}[标准转移概率]
+            若$P_{ij}(t)$ 在 $t=0$ 连续，即 $\forall i, j \in \mathbb{E}$ ，有：
+            \[
+                \lim_{t \to 0} P_{ij}(t) = P_{ij}(0) = \delta_{ij} = 
+                \left\{
+                \begin{array}{l}
+                    1, i = j \\
+                    0, i \neq j
+                \end{array}
+                \right.
+            \]
+        \end{definition}
     \subsection{转移率}
+
+        \begin{definition}[通过率]
+            状态 $i$ 的通过率 $q_i$ 定义为：
+            \[
+                q_i = \lim_{h \to 0} \frac{1 - P_{ii}(h)}{h}
+            \]
+        \end{definition}
+
+        \begin{definition}[转移率]
+            状态 $i$ 到状态 $j$ 的转移率 $q_{ij}$ 定义为：
+            \[
+                q_{ij} = \lim_{h \to 0} \frac{P_{ij}(h)}{h}
+            \]
+        \end{definition}
+
+        \begin{definition}[转移率矩阵]
+            定义 $q_{ii} = -q_j$，则矩阵 $Q = \left( q_{ij} \right) $ 为：
+            \[
+                Q = 
+                \begin{bmatrix}
+                    -q_0 & q_{01} & q_{02} & \cdots \\
+                    q_{10} & -q_1 & q_{12} & \cdots \\
+                    q_{20} & q_{21} & -q_2 & \cdots \\
+                    \vdots & \vdots & \vdots & \ddots \\
+                \end{bmatrix}
+            \]
+        \end{definition}
     \subsection{$Kolmogorov$方程}
+        （空）
     \subsection{生灭过程}
+        \begin{definition}[生灭过程]
+            若连续时间齐次马氏链 \ContinuousMarkovChain 的状态空间为 $E = \{0, 1, 2, \ldots \}$，且转移概率函数 $P(t) = (P_{ij}(t))$ 满足：
+            \begin{equation*}
+                \left\{
+                    \begin{aligned}
+                        & P_{i, i+1}(h) = \lambda_{i} h + o(h), i \geq 0 \\
+                        & P_{i, i-1}(h) = \mu_i h + o(h), i \geq 1 \\
+                        & P_{i, i}(h) = 1 - (\lambda_i + \mu_i) + o(h), i \geq 0 \\
+                        & \sum\limits_{|i - j| \geq 2, i \geq 0, j \geq 0} P_{ij}(h) = o(h) \\
+                        & \lambda_i \geq 0, i \geq 0 \\
+                        & \mu_0 = 0, \mu_i \geq 0, i \geq 1 \\
+                    \end{aligned}
+                \right.
+            \end{equation*}
+        \end{definition}

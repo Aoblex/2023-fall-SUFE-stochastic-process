@@ -1,4 +1,37 @@
 \section{布朗运动}
     \subsection{布朗运动的定义及基本性质}
+        \begin{definition}[布朗运动]
+            如果随机过程 \ContinuousMarkovChain 满足：
+            \begin{enumerate}[label=(\arabic*).]
+                \item $\textbf{X}(0) = 0$
+                \item \ContinuousMarkovChain 有平稳独立增量
+                \item $\forall t > 0, \textbf{X}(t) \sim N(0, \sigma^2 t)$
+            \end{enumerate}
+            则称 \ContinuousMarkovChain 为布朗运动。
+        \end{definition}
     \subsection{布朗运动的首中时和最大值}
+        \begin{definition}[首中时]
+            记布朗运动 \ContinuousMarkovChain 首次击中 $x$ 的时刻为：
+            \[ \textbf{T}_x = \inf\{t \geq 0, \textbf{X}(t) = x\} \]
+        \end{definition}
+
+        \begin{definition}[最大值]
+            记布朗运动 \ContinuousMarkovChain 在 $[0, t]$ 中达到的最大值为：
+            \[ \textbf{M}(t) = \max_{0 \leq s \leq t} \textbf{X}(s) \]
+        \end{definition}
     \subsection{布朗运动的推广}
+        \begin{definition}[带有线性漂移的布朗运动]
+            若随机过程 \ContinuousMarkovChain 满足：
+            \begin{enumerate}[label=(\arabic*)]
+                \item $ \textbf{X}(0) = 0 $
+                \item \ContinuousMarkovChain 有平稳独立增量
+                \item $ \forall t \geq 0, \textbf{X}(t) \sim N(\mu t, \sigma^2 t) $
+            \end{enumerate}
+        \end{definition}
+
+        \begin{definition}[几何布朗运动]
+            设 $\{\textbf{W}(t), t \geq 0\}$是均值为 $\mu t$，方差参数为 $\sigma^2$ 的布朗运动，若：
+            \[\textbf{X}(t) = e^{\textbf{W}(t)}\]
+            则称 \ContinuousMarkovChain 为几何布朗运动。
+            
+        \end{definition}
